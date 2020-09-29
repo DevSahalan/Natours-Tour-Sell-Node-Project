@@ -52,7 +52,7 @@ mongoose
 const port = process.env.PORT | 3000;
 
 const server = app.listen(port, () => {
-  console.log(`server is listening at port ${Port}`);
+  console.log(`server is listening at port ${port}`);
 });
 
 process.on('unhandledRejection', err => {
