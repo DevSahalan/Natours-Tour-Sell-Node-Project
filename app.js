@@ -6,6 +6,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -86,7 +87,8 @@ app.use(function(req, res, next) {
   res.setHeader(
     'Content-Security-Policy',
     // "default-src * 'unsafe-inline'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com https://fonts.googleapis.com/"
-    "script-src 'self' cdnjs.cloudflare.com"
+    // "script-src 'self' cdnjs.cloudflare.com"
+    "script-src 'self' cdnjs.cloudflare.com js.stripe.com"
   );
   // console.log(req.cookies);
   return next();
@@ -95,6 +97,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 // app.use(
 //   expressCspHeader({
